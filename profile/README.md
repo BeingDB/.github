@@ -11,26 +11,36 @@ question -> local model (WebLLM) -> BeingDB query -> BeingDB (WASM) validates an
 Your facts live in Git, versioned and reviewable like code:
 
 ```prolog
-created(tina_keane, shadow_of_a_journey).
-year_created(shadow_of_a_journey, @1979).
+written_by(emma, jane_austen).
+published_in(emma, @1815).
 ```
 
 ```
-find Artist, Work, Y
+find Book, Year
 where
-  created(Artist, Work)
-  year_created(Work, Y)
-  Y >= 1970
+  written_by(Book, jane_austen)
+  published_in(Book, Year)
 ```
 
 The same engine also runs as a server, and through MCP for AI assistants.
 
-**▶ [Try the in-browser chatbot](https://beingdb.github.io/beingdb-webllm/)** (no install; needs a WebGPU browser such as current Chrome or Edge) · **[Learn the query language](https://beingdb.github.io/beingdb-wasm/tutorial/)**
+**▶ [Make your own chatbot](https://github.com/beingdb/beingdb-chatbot-template)**: click *Use this template*, add your facts, and GitHub Pages publishes it. · **[Try the demo](https://beingdb.github.io/beingdb-chatbot-template/)** (needs a WebGPU browser such as current Chrome or Edge) · **[Learn the query language](https://beingdb.github.io/beingdb-wasm/tutorial/)**
 
 ## Projects
 
-- **[beingdb](https://github.com/BeingDB/beingdb)** — core database and query engine
-- **[beingdb-wasm](https://github.com/BeingDB/beingdb-wasm)** — BeingDB running entirely in the browser
-- **[beingdb-webllm](https://github.com/BeingDB/beingdb-webllm)** — in-browser chatbot: local LLM + BeingDB, with benchmarks
-- **[beingdb-mcp](https://github.com/BeingDB/beingdb-mcp)** — MCP interface for AI assistants and tools
-- **[beingdb-rewind-interviews](https://github.com/BeingDB/beingdb-rewind-interviews)** — research/demo dataset ([live site](https://beingdb.github.io/beingdb-rewind-interviews/))
+**Start here**
+
+- **[beingdb-chatbot-template](https://github.com/beingdb/beingdb-chatbot-template)** — make an in-browser chatbot over your own facts, published on GitHub Pages
+
+**Core**
+
+- **[beingdb](https://github.com/beingdb/beingdb)** — core database and query engine
+- **[beingdb-wasm](https://github.com/beingdb/beingdb-wasm)** — BeingDB running entirely in the browser
+- **[beingdb-mcp](https://github.com/beingdb/beingdb-mcp)** — MCP interface for AI assistants and tools
+
+**Research example: the REWIND artists' interviews**
+
+A larger, real dataset: facts about British and international video artists, extracted from the [REWIND](https://rewind.ac.uk/) interview archive.
+
+- **[beingdb-rewind-interviews](https://github.com/beingdb/beingdb-rewind-interviews)** — the facts and how they were extracted ([query them in the browser](https://beingdb.github.io/beingdb-rewind-interviews/))
+- **[beingdb-webllm](https://github.com/beingdb/beingdb-webllm)** — the chatbot over those facts ([try it](https://beingdb.github.io/beingdb-webllm/)), with benchmarks of how well local models write BeingDB queries
