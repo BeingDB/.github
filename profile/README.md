@@ -1,22 +1,25 @@
 # BeingDB
 
-**Structured facts. Deterministic queries. AI-friendly interfaces.**
+**AI as an interface, not as the database.**
 
-BeingDB is an open-source database for storing structured facts in Git and querying them with a small, readable declarative language.
+LLMs are great at understanding questions but unreliable as a source of truth. BeingDB keeps your facts in Git, versioned and reviewable like code, and answers queries deterministically. The model helps phrase the query; BeingDB validates it, runs it and returns the facts.
 
-It is designed for systems where data should stay **versioned, inspectable and deterministic**, while still being easy to use from modern AI tools.
-
-Language models can help formulate queries, but BeingDB remains authoritative for validation, execution and results.
-
-```text
-Natural language
-      ↓
-BeingDB query
-      ↓
-validate / execute
-      ↓
-structured results
+```prolog
+created(tina_keane, shadow_of_a_journey).
+year_created(shadow_of_a_journey, @1979).
 ```
+
+```
+find Artist, Work, Y
+where
+  created(Artist, Work)
+  year_created(Work, Y)
+  Y >= 1970
+```
+
+Runs on a server or entirely in the browser via WebAssembly. No account needed, and queries never leave the page.
+
+**▶ [Try it in your browser](https://beingdb.github.io/beingdb-wasm/tutorial/)** (no install) · **[Local AI demo](https://beingdb.github.io/beingdb-webllm/)**
 
 ## Projects
 
@@ -24,14 +27,4 @@ structured results
 - **[beingdb-wasm](https://github.com/BeingDB/beingdb-wasm)** — BeingDB running entirely in the browser
 - **[beingdb-webllm](https://github.com/BeingDB/beingdb-webllm)** — local LLM + BeingDB experiments and benchmarks
 - **[beingdb-mcp](https://github.com/BeingDB/beingdb-mcp)** — MCP interface for AI assistants and tools
-- **[beingdb-rewind-interviews](https://github.com/BeingDB/beingdb-rewind-interviews)** — research/demo dataset
-
-## Try it
-
-**Browser tutorial:**  
-https://beingdb.github.io/beingdb-wasm/tutorial/
-
-**Local AI demo:**  
-https://beingdb.github.io/beingdb-webllm/
-
-> **AI as an interface, not as the database.**
+- **[beingdb-rewind-interviews](https://github.com/BeingDB/beingdb-rewind-interviews)** — research/demo dataset ([live site](https://beingdb.github.io/beingdb-rewind-interviews/))
